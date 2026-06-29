@@ -1,54 +1,206 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. حركة زرار السكرول الرئيسي لينزل بسلاسة للمحتوى
-    const scrollBtn = document.getElementById('scrollBtn');
-    if (scrollBtn) {
-        scrollBtn.addEventListener('click', () => {
-            document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
-        });
-    }
+/* ضبط عام وتصفير الهوامش لمنع أي فراغات مجهولة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
 
-    // 2. إظهار وإخفاء سر البتنجانة عند الضغط على الزر
-    const factBtn = document.getElementById('factBtn');
-    const factBox = document.getElementById('factBox');
-    if (factBtn && factBox) {
-        factBtn.addEventListener('click', () => {
-            if (factBox.style.display === 'block') {
-                factBox.style.display = 'none';
-            } else {
-                factBox.style.display = 'block';
-            }
-        });
-    }
+body {
+    background-color: #f3f0ff;
+    color: #1e1b4b;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
 
-    // 3. إظهار وإخفاء رسالة بهاء السرية عند الضغط على الزر
-    const loveBtn = document.getElementById('loveBtn');
-    const loveBox = document.getElementById('loveBox');
-    if (loveBtn && loveBox) {
-        loveBtn.addEventListener('click', () => {
-            if (loveBox.style.display === 'block') {
-                loveBox.style.display = 'none';
-            } else {
-                loveBox.style.display = 'block';
-            }
-        });
-    }
+/* واجهة الـ Hero الكاملة للشاشة */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: #ffffff;
+    padding: 20px;
+    position: relative;
+}
 
-    // 4. جعل البطاقات تظهر تدريجياً أثناء الـ Scroll لأسفل الصفحة
-    const cards = document.querySelectorAll('.card');
-    
-    const checkCards = () => {
-        const triggerBottom = window.innerHeight * 0.85;
-        cards.forEach(card => {
-            const cardTop = card.getBoundingClientRect().top;
-            if (cardTop < triggerBottom) {
-                card.classList.add('visible');
-            }
-        });
-    };
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-    // تشغيل الدالة فوراً للتأكد من ظهور البطاقات العلوية
-    checkCards();
-    // تشغيل الدالة مع كل عملية تمرير (Scroll)
-    window.addEventListener('scroll', checkCards);
-});
+.hero-section p {
+    font-size: 1.4rem;
+    margin-bottom: 35px;
+    opacity: 0.95;
+    max-width: 600px;
+}
+
+/* زر التمرير السلس المتفاعل */
+.cta-button {
+    background: #ff4757;
+    color: #ffffff;
+    border: 3px solid #1e1b4b;
+    padding: 16px 36px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 0px #1e1b4b;
+    transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 0px #1e1b4b;
+    background: #ff6b81;
+}
+
+.cta-button:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0px #1e1b4b;
+}
+
+/* حاوية التوسيط الرئيسية للبطاقات */
+.content-container {
+    max-width: 680px;
+    margin: -60px auto 60px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* تصميم البطاقات المتقن والحديث (Neo-brutalism) */
+.interactive-card {
+    background: #ffffff;
+    border: 3px solid #1e1b4b;
+    border-radius: 24px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 8px 8px 0px #1e1b4b;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* فئة الظهور التدريجي الفوري للبطاقة عبر السكريبت */
+.interactive-card.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تخصيص مظهر بطاقة بهاء الوردية والفريدة */
+.interactive-card.special-love-card {
+    background: #fff5f7;
+    border-color: #ff4757;
+    box-shadow: 8px 8px 0px #ff4757;
+}
+
+.interactive-card h2 {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: #4f46e5;
+    margin-bottom: 15px;
+}
+
+.interactive-card.special-love-card h2 {
+    color: #ff4757;
+}
+
+.interactive-card p {
+    font-size: 1.15rem;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+/* الأوسمة والشارات الكرتونية اللطيفة */
+.tag-badge {
+    background: #e0e7ff;
+    color: #4338ca;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 15px;
+    border: 2px solid #1e1b4b;
+}
+
+.tag-badge.eggplant-style {
+    background: #f3e8ff;
+    color: #6b21a8;
+}
+
+/* الأزرار التفاعلية للمفاجآت والأسرار */
+.reveal-toggle-btn {
+    background: #face15;
+    color: #1e1b4b;
+    border: 2px solid #1e1b4b;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #1e1b4b;
+    transition: all 0.15s ease;
+}
+
+.reveal-toggle-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #1e1b4b;
+}
+
+.reveal-toggle-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #1e1b4b;
+}
+
+.special-love-card .reveal-toggle-btn {
+    background: #ff4757;
+    color: #ffffff;
+    border-color: #1e1b4b;
+}
+
+/* صناديق الأسرار والرسائل التفاعلية المخفية */
+.hidden-secret-box {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    background: #fef08a;
+    border: 2px dashed #1e1b4b;
+    border-radius: 14px;
+    margin-top: 0;
+    padding: 0 15px;
+    color: #854d0e;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.4s ease;
+}
+
+/* فئة الفتح السلس والمرن عبر السكريبت */
+.hidden-secret-box.show-now {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+.special-love-card .hidden-secret-box {
+    background: #ffffff;
+    border-color: #ff4757;
+    color: #b91c1c;
+}
+
+/* فوتر الموقع */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 700;
+}
