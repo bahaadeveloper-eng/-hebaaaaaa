@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هبة عاطف | المستقبل يبدأ من هنا</title>
+    <!-- خط Cairo المميز -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* كل التنسيقات مدمجة هنا لسهولة الرفع على GitHub */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: #f0eff8;
+            color: #2d2d3a;
+            overflow-x: hidden;
+        }
+
+        /* الهيدر أو واجهة الموقع */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a8a5ff 100%);
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            animation: popUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* زرار الحركة لأسفل */
+        .scroll-btn {
+            background: #ff7675;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 118, 117, 0.4);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .scroll-btn:hover {
+            transform: scale(1.05);
+            background: #ff5252;
+        }
+
+        /* قسم البطاقات التفاعلية */
+        .main-content {
+            max-width: 900px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 3px solid #2d2d3a; /* ستايل بروبوب كرتوني جذاب */
+            box-shadow: 8px 8px 0px #2d2d3a;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+
+        .card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            color: #6c5ce7;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* تأثيرات الأزرار التفاعلية داخل البطاقات */
+        .interactive-btn {
+            background: #fdcb6e;
+            color: #2d2d3a;
+            border: 2px solid #2d2d3a;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 12px;
+            margin-top: 15px;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 4px 4px 0px #2d2d3a;
+            transition: all 0.2s;
+        }
+
+        .interactive-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #2d2d3a;
+        }
+
+        .interactive-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #2d2d3a;
+        }
+
+        /* كود الـ Secret Note */
+        .secret-box {
+            display: none;
+            background: #ffeaa7;
+            border: 2px dashed #ff7675;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #d63031;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* الأقسام الجانبية المرحة */
+        .badge {
+            background: #ff7675;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .badge.eggplant {
+            background: #74b9ff;
+            color: white;
+        }
+
+        /* الفوتر */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 1rem;
+            color: #777;
+        }
+
+        /* الأنميشن */
+        @keyframes popUp {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الواجهة الرئيسية -->
+    <section class="hero">
+        <h1>هبة عاطف</h1>
+        <p>الـ بتنجانة الصغننة ذات الأحلام الكبيرة 🌌</p>
+        <button class="scroll-btn" onclick="scrollToContent()">اكتشف عالمها 💫</button>
+    </section>
+
+    <!-- المحتوى التفاعلي (البطاقات) -->
+    <main class="main-content" id="content">
+
+        <!-- بطاقة التعريف -->
+        <div class="card">
+            <span class="badge">العمر: 18 سنة</span>
+            <h2>مين هي هبة؟ ✨</h2>
+            <p>
+                كتلة من الطاقة، اللطافة، والعناد الجميل. عمرها 18 سنة بس عقلها وطموحها يوزنوا بلد. بتعيش في قلب <strong>الشيخ زايد</strong>، ومن هناك بتخطط للسيطرة على عالم الأعمال!
+            </p>
+        </div>
+
+        <!-- بطاقة اللقب اللطيف -->
+        <div class="card">
+            <span class="badge eggplant">اللقب الرسمي</span>
+            <h2>حكاية الـ "بتنجانة" 🍆</h2>
+            <p>
+                مش أي بتنجانة.. دي ألطف وأصغر بتنجانة في المجرة. لقب مميز وراه شخصية مفيش منها اتنين، بتجمع بين خفة الدم والروح اللي تدخل القلب من أول ثانية.
+            </p>
+            <button class="interactive-btn" onclick="toggleFact()">اضغط لمعرفة سر خطير 🤫</button>
+            <div class="secret-box" id="factBox">
+                السر هو: البتنجانة دي لما بتعاند، مفيش قوة في الكوكب تقدر توقفها! 🌟
+            </div>
+        </div>
+
+        <!-- بطاقة الطموح والشغف -->
+        <div class="card">
+            <h2>رائدة أعمال المستقبل 💼🚀</h2>
+            <p>
+                الـ 18 سنة دول مجرد البداية. هبة مش ماشية جنب الحيط، هبة بتبني الحيط وتفتح فيه أبواب للمستقبل. بتحلم بـ بيزنس خاص بيها، وبتخطط عشان تبقا واحدة من أهم رواد الأعمال في العالم. افتكروا الاسم ده كويس!
+            </p>
+        </div>
+
+        <!-- بطاقة بهاء السرية والتفاعلية -->
+        <div class="card" style="background: #fff0f5; border-color: #ff7675; box-shadow: 8px 8px 0px #ff7675;">
+            <h2>جانب سري جداً 🕵️‍♂️❤️</h2>
+            <p>
+                وسط كل الأحلام الكبيرة والخطط دي، في حد دايماً في ضهرها، بيشجعها ويحبها جداً.. الشخص ده اسمه <strong>بهاء</strong>. بهاء شايفها دايماً أعظم انتصاراته وأجمل بتنجانة في الدنيا.
+            </p>
+            <button class="interactive-btn" style="background: #ff7675; color: white;" onclick="showLoveMessage()">اضغط لرؤية رسالة بهاء لها 💌</button>
+            <div class="secret-box" id="loveBox" style="background: white; border-color: #ff7675;">
+                "إلى رائدة أعمالي المفضلة.. أنا فخور بيكي في كل خطوة، ومعاكي لحد ما تشوفي كل أحلامك حقيقة." - بهاء 🐻
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        صُنع بكل حب لـ هبة عاطف © 2026
+    </footer>
+
+    <!-- الجزء التفاعلي بالـ JavaScript -->
+    <script>
+        // تأثير ظهور البطاقات أثناء التمرير (Scroll) مثل الموقع الملهم
+        const cards = document.querySelectorAll('.card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // زرار السكرول بسلاسة
+        function scrollToContent() {
+            document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // إظهار وإخفاء الأسرار
+        function toggleFact() {
+            const box = document.getElementById('factBox');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showLoveMessage() {
+            const box = document.getElementById('loveBox');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
