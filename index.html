@@ -3,60 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هبة عاطف | رائدة أعمال المستقبل</title>
+    <title>هبة عاطف | رائدة أعمال المستقبل 🚀</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* إعدادات وتصفير عام خالي تماماً من الأخطاء أو الفراغات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f3f0ff;
+            color: #1e1b4b;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* واجهة الـ Hero الاحترافية */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-section p {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        /* زر التمرير السلس للمحتوى */
+        .cta-button {
+            background: #ff4757;
+            color: #ffffff;
+            border: 3px solid #1e1b4b;
+            padding: 16px 36px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 0px #1e1b4b;
+            transition: all 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 0px #1e1b4b;
+            background: #ff6b81;
+        }
+
+        .cta-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0px #1e1b4b;
+        }
+
+        /* حاوية البطاقات وتوسيطها */
+        .content-container {
+            max-width: 680px;
+            margin: -60px auto 60px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* تصميم البطاقات الحديث (Neo-brutalism) المحكم */
+        .interactive-card {
+            background: #ffffff;
+            border: 3px solid #1e1b4b;
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 8px 8px 0px #1e1b4b;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* ظهور البطاقة فوراً أثناء السكرول */
+        .interactive-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* بطاقة بهاء بلون رومانسي متناسق ومميز */
+        .interactive-card.special-love-card {
+            background: #fff5f7;
+            border-color: #ff4757;
+            box-shadow: 8px 8px 0px #ff4757;
+        }
+
+        .interactive-card h2 {
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: #4f46e5;
+            margin-bottom: 15px;
+        }
+
+        .interactive-card.special-love-card h2 {
+            color: #ff4757;
+        }
+
+        .interactive-card p {
+            font-size: 1.15rem;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+
+        /* الأوسمة الكرتونية */
+        .tag-badge {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 2px solid #1e1b4b;
+        }
+
+        .tag-badge.eggplant-style {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        /* أزرار المفاجآت التفاعلية */
+        .reveal-toggle-btn {
+            background: #face15;
+            color: #1e1b4b;
+            border: 2px solid #1e1b4b;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #1e1b4b;
+            transition: all 0.15s ease;
+        }
+
+        .reveal-toggle-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #1e1b4b;
+        }
+
+        .reveal-toggle-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #1e1b4b;
+        }
+
+        .special-love-card .reveal-toggle-btn {
+            background: #ff4757;
+            color: #ffffff;
+            border-color: #1e1b4b;
+        }
+
+        /* الصناديق السرية المخفية وتفتح بسلاسة مرنة */
+        .hidden-secret-box {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            background: #fef08a;
+            border: 2px dashed #1e1b4b;
+            border-radius: 14px;
+            margin-top: 0;
+            padding: 0 15px;
+            color: #854d0e;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+        }
+
+        .hidden-secret-box.show-now {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 15px;
+            padding: 15px;
+        }
+
+        .special-love-card .hidden-secret-box {
+            background: #ffffff;
+            border-color: #ff4757;
+            color: #b91c1c;
+        }
+
+        /* الفوتر السفلي */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>هبة عاطف</h1>
-            <p>الـ بتنجانة الصغننة ذات الأحلام الكبيرة 🌌</p>
-            <button class="scroll-btn" id="scrollBtn">اكتشف عالمها 💫</button>
-        </div>
+    <section class="hero-section">
+        <h1>هبة عاطف</h1>
+        <p>الـ بتنجانة الصغننة ذات الأحلام الكبيرة والمستقبل المشرق 🌌</p>
+        <button class="cta-button" id="mainScrollAction">اكتشف عالمها 💫</button>
     </section>
 
-    <main class="main-content" id="content">
+    <main class="content-container" id="targetContent">
 
-        <div class="card">
-            <span class="badge">العمر: 18 سنة</span>
-            <h2>مين هي هبة؟ ✨</h2>
-            <p>كتلة من الطاقة، اللطافة، والعناد الجميل. عمرها 18 سنة بس عقلها وطموحها يوزنوا بلد. بتعيش في قلب <strong>الشيخ زايد</strong>، ومن هناك بتخطط للسيطرة على عالم الأعمال!</p>
+        <div class="interactive-card">
+            <span class="tag-badge">العمر: 18 سنة</span>
+            <h2>مين هي هبة? ✨</h2>
+            <p>كتلة من الطاقة، اللطافة، والعناد الجميل. عمرها 18 سنة بس عقلها وطموحها يوزنوا بلد. بتعيش في قلب <strong>الشيخ زايد</strong>، ومن هناك بتخطط للسيطرة على عالم الأعمال والتميز!</p>
         </div>
 
-        <div class="card">
-            <span class="badge eggplant">اللقب الرسمي</span>
+        <div class="interactive-card">
+            <span class="tag-badge eggplant-style">اللقب المحبب</span>
             <h2>حكاية الـ "بتنجانة" 🍆</h2>
-            <p>مش أي بتنجانة.. دي ألطف وأصغر بتنجانة في المجرة. لقب مميز وراه شخصية مفيش منها اتنين، بتجمع بين خفة الدم والروح اللي تدخل القلب من أول ثانية.</p>
-            <button class="interactive-btn" id="factBtn">اضغط لمعرفة سر خطير 🤫</button>
-            <div class="secret-box" id="factBox">
-                السر هو: البتنجانة دي لما بتعاند، مفيش قوة في الكوكب تقدر توقفها! 🌟
+            <p>مش أي بتنجانة.. دي ألطف وأصغر بتنجانة في المجرة. لقب مميز وراه شخصية مفيش منها اتنين، بتجمع بين خفة الدم اللطيفة والروح النادرة اللي تدخل القلب فوراً.</p>
+            <button class="reveal-toggle-btn" id="btnSecretOne">اضغط لمعرفة سر خطير 🤫</button>
+            <div class="hidden-secret-box" id="boxSecretOne">
+                السر العجيب هو: البتنجانة دي لما بتعاند وتصمم على حاجة، مفيش قوة في الكوكب تقدر توقفها عن النجاح! 🌟
             </div>
         </div>
 
-        <div class="card">
+        <div class="interactive-card">
             <h2>رائدة أعمال المستقبل 💼🚀</h2>
-            <p>الـ 18 سنة دول مجرد البداية. هبة مش ماشية جنب الحيط، هبة بتبني الحيط وتفتح فيه أبواب للمستقبل. بتحلم بـ بيزنس خاص بيها، وبتخطط عشان تبقا واحدة من أهم رواد الأعمال في العالم. افتكروا الاسم ده كويس!</p>
+            <p>الـ 18 سنة دول مجرد البداية الحقيقية لانطلاقة كبرى. هبة مش ماشية جنب الحيط، هبة بتبني إمبراطوريتها الخاصة وتفتح فيها أبواباً للمستقبل الشغوف. بتحلم بـ بيزنس مبتكر خاص بيها، وبتخطط عشان تبقا واحدة من أهم رواد الأعمال. افتكروا الاسم ده كويس جداً!</p>
         </div>
 
-        <div class="card love-card" id="loveCard">
+        <div class="interactive-card special-love-card">
             <h2>جانب سري جداً 🕵️‍♂️❤️</h2>
-            <p>وسط كل الأحلام الكبيرة والخطط دي، في حد دايماً في ضهرها، بيشجعها ويحبها جداً.. الشخص ده اسمه <strong>بهاء</strong>. بهاء شايفها دايماً أعظم انتصاراته وأجمل بتنجانة في الدنيا.</p>
-            <button class="interactive-btn love-btn" id="loveBtn">اضغط لرؤية رسالة بهاء لها 💌</button>
-            <div class="secret-box love-box" id="loveBox">
-                "إلى رائدة أعمالي المفضلة.. أنا فخور بيكي في كل خطوة، ومعاكي لحد ما تشوفي كل أحلامك حقيقة." - بهاء 🐻
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-        صُنع بكل حب لـ هبة عاطف © 2026
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+            <p>وسط كل الأحلام الكبيرة والخطط المستقبلية الطموحة دي، في حد دايماً واقف في ضهرها، بيشجعها وبيدعمها وبيموت فيها.. الشخص ده هو <strong>بهاء</strong>. بهاء شايفها دايماً أعظم انتصاراته وأجمل بتنجانة في الدنيا كلها.</p>
+            <button class="reveal-toggle-btn" id="btnSecretTwo">اضغط لرؤ
